@@ -44,15 +44,15 @@ theme:
 plugins:
   - search
   - mermaid2
-  - with-pdf:
+  - to-pdf:
       author: pixelotes
       cover_title: OpsDeck Documentation
       cover_subtitle: IT Operations & Governance Platform
       output_path: export/opsdeck-docs.pdf
       enabled_if_env: ENABLE_PDF_EXPORT
       toc_level: 3
-      render_js: true
-      headless_chrome_path: chromium-browser
+      mermaid:
+        enabled: true
 
 markdown_extensions:
   - admonition
