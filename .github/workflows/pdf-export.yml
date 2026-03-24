@@ -23,22 +23,21 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install system dependencies
+      - name: Install system dependencies (WeasyPrint)
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            libpango-1.0-0 libpangocairo-1.0-0 \
-            libgdk-pixbuf2.0-0 libffi-dev libcairo2 \
-            chromium-browser
+          sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev libcairo2
 
       - name: Install mermaid-cli
         run: npm install -g @mermaid-js/mermaid-cli
 
       - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Pre-render Mermaid diagrams to SVG
         run: |
-          pip install -r requirements.txt
-          pip install "mkdocs-with-pdf @ git+https://github.com/nbanyan/mkdocs-to-pdf.git@mermaid-cli"
-          pip install Pillow
+          echo '{"args": ["--no-sandbox", "--disable-setuid-sandbox"]}' > /tmp/puppeteer.json
+          python scripts/render-mermaid.py docs/ -p /tmp/puppeteer.json
 
       - name: Build with PDF export
         env:
