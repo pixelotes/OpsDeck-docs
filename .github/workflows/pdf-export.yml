@@ -19,15 +19,20 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Install system dependencies (WeasyPrint + Chromium)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install system dependencies (WeasyPrint)
         run: |
           sudo apt-get update
-          sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev libcairo2 chromium-browser
+          sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev libcairo2
 
-      - run: |
-          pip install -r requirements.txt
-          python -c "import weasyprint; print(weasyprint.__version__)"
-          python -c "import weasyprint.layout.grid" 2>&1 || echo "NO grid module - good"
+      - name: Install mermaid-cli
+        run: npm install -g @mermaid-js/mermaid-cli
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
 
       - name: Build with PDF export
         env:
