@@ -53,6 +53,8 @@ plugins:
       toc_level: 3
       mermaid:
         enabled: true
+        mmdc_path: mmdc
+      debug_html: true
 
 markdown_extensions:
   - admonition
