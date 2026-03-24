@@ -1,6 +1,5 @@
 mkdocs==1.6.1
 mkdocs-material==9.6.14
-git+https://github.com/domWalters/mkdocs-to-pdf.git@mermaid-cli
 weasyprint==62.3
 pydyf
 mkdocs-mermaid2-plugin
