@@ -24,7 +24,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev libcairo2
 
-      - run: pip install -r requirements.txt
+      - run: |
+          pip install -r requirements.txt
+          python -c "import weasyprint; print(weasyprint.__version__)"
+          python -c "import weasyprint.layout.grid" 2>&1 || echo "NO grid module - good"
 
       - name: Build with PDF export
         env:
