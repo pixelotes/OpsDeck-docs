@@ -2,41 +2,14 @@
 
 OpsDeck is an integrated IT operations and governance platform designed for teams that need operational rigor without enterprise complexity. It serves as the operational system of record for IT departments in regulated environments.
 
-<div class="grid cards" markdown>
+## Sections
 
--   :material-book-open-variant:{ .lg .middle } **User Guide**
-
-    ---
-
-    Learn how to use every module — from asset tracking to compliance audits and user access reviews.
-
-    [:octicons-arrow-right-24: Start here](user-guide/index.md)
-
--   :material-rocket-launch:{ .lg .middle } **Deployment**
-
-    ---
-
-    Get OpsDeck running with Docker, Kubernetes, or a manual install. Includes backup, monitoring, and hardening.
-
-    [:octicons-arrow-right-24: Deploy](deployment/index.md)
-
--   :material-sitemap:{ .lg .middle } **Architecture**
-
-    ---
-
-    Understand the system design, data model, dependency choices, and architectural decisions behind OpsDeck.
-
-    [:octicons-arrow-right-24: Deep dive](architecture/index.md)
-
--   :material-frequently-asked-questions:{ .lg .middle } **FAQ**
-
-    ---
-
-    Common questions about licensing, target audience, feature scope, and troubleshooting.
-
-    [:octicons-arrow-right-24: FAQ](faq.md)
-
-</div>
+| | Section | Description |
+|---|---|---|
+| :material-book-open-variant: | **[User Guide](user-guide/index.md)** | Learn how to use every module — from asset tracking to compliance audits and user access reviews |
+| :material-rocket-launch: | **[Deployment](deployment/index.md)** | Get OpsDeck running with Docker, Kubernetes, or a manual install |
+| :material-sitemap: | **[Architecture](architecture/index.md)** | System design, data model, dependency choices, and architectural decisions |
+| :material-frequently-asked-questions: | **[FAQ](faq.md)** | Common questions about licensing, features, and troubleshooting |
 
 ## What OpsDeck does
 
