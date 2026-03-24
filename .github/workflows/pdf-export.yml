@@ -37,7 +37,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           pip install -r requirements.txt
-          pip install "mkdocs-to-pdf @ git+https://github.com/nbanyan/mkdocs-to-pdf.git@mermaid-cli"
+          pip install "mkdocs-with-pdf @ git+https://github.com/nbanyan/mkdocs-to-pdf.git@mermaid-cli"
           pip install Pillow
 
       - name: Build with PDF export
