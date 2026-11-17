@@ -29,10 +29,15 @@ A connector cannot run until its credentials are configured. When you edit the c
 
 If the server has the `AZURE_OAUTH_*` variables set (see [Microsoft Entra ID](entra-id.md)), tick **Use the Entra ID app registration of this server**. The connector then uses that registration, and no Microsoft secret is stored in the database. The app registration needs the Graph application permissions for the data it fetches, such as `User.Read.All` and `Group.Read.All`.
 
+### Atlassian site URL
+
+The Site URL must use `https`, have no path or embedded credentials, and point to `*.atlassian.net`. To use another host, such as a custom domain, list it in `ATLASSIAN_ALLOWED_HOSTS`. OpsDeck checks the URL both when you save it and on every run. If you change the Site URL or the email, you must enter the API token again, so the stored token can never be sent to a different host.
+
 ## Reports
 
 - A background job checks every 5 minutes and runs each enabled connector whose interval has elapsed.
 - Every run of every endpoint is stored as a report and compared with the previous one, so you can see what was **added, removed or changed** between runs.
+- A run whose pagination repeats a URL or goes past 1,000 pages **fails** instead of saving a partial report, so missing accounts can't go unnoticed in an access review.
 - You can browse reports per endpoint and open them full screen.
 - In a User Access Review, choose **Connector Report** as the data source of a dataset to compare, for example, GitHub members against your HR users.
 

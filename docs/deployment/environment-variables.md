@@ -51,6 +51,7 @@ These are used only on the first run to create the initial admin user.
 | `AZURE_OAUTH_TENANT_ID` | Entra ID tenant ID, for Microsoft SSO, the Entra ID user sync and the Microsoft 365 connector. Must be a single tenant. | `''` |
 | `AZURE_OAUTH_CLIENT_ID` | Entra ID application (client) ID. | `''` |
 | `AZURE_OAUTH_CLIENT_SECRET` | Entra ID client secret. | `''` |
+| `ATLASSIAN_ALLOWED_HOSTS` | Comma-separated hosts, besides `*.atlassian.net`, that the Atlassian connector may use as its Site URL. | `''` |
 | `OAUTHLIB_INSECURE_TRANSPORT` | Allow OAuth over HTTP. **Development only.** | — |
 | `MFA_ENABLED` | Enable TOTP multi-factor authentication. | `False` |
 
