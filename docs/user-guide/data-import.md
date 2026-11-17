@@ -124,8 +124,8 @@ python scripts/google-provision.py all --execute         # both
 
 The first argument is `provision`, `suspend` or `all`, and one of `--dry-run` or `--execute` is required. New accounts get a random 24-character temporary password that must be changed at first sign-in. The service account needs the scope `https://www.googleapis.com/auth/admin.directory.user`.
 
-!!! warning
-    The script reads `/api/v1/onboardings/pending-provisioning` and `/api/v1/offboardings/pending-suspension` and posts to `.../mark-provisioned` and `.../mark-suspended`. The current OpsDeck API does not provide these endpoints, so the script fails against a standard installation.
+!!! warning "Unsupported"
+    The script needs API endpoints that OpsDeck does not provide (`/api/v1/onboardings/pending-provisioning`, `/api/v1/offboardings/pending-suspension` and the `mark-provisioned` / `mark-suspended` calls). It is marked unsupported and exits with code 2.
 
 ### jira-sync.py
 

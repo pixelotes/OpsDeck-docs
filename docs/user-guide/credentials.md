@@ -19,7 +19,7 @@ Credentials are part of the **Core Inventory** module.
 | **Owner** | Required. The user responsible for the credential. Expiry reminders are sent to this user. |
 | **Description** | Optional context. |
 | **Critical Infrastructure** | Break-glass flag for critical or high-privilege credentials. The credential is highlighted with a red **Critical Infrastructure** badge. |
-| **Target** | Optional. The software, license or asset the credential belongs to. |
+| **Target** | Optional. The service, software, license or asset the credential belongs to. |
 | **Secret Value** | Required when creating. Masked before it is saved (see below). |
 | **Expiry Date** | Optional. Used for expiry status, reminders and the renewal calendar. |
 
@@ -69,7 +69,7 @@ The new secret becomes the active one and all previous secrets are deactivated. 
 A credential can be linked to:
 
 - **Business services**: from the service page, link existing credentials (see [Service Catalog](services.md)). A service can use several credentials, and a credential can serve several services.
-- **Software, a license or an asset**: with the **Target** field on the credential form.
+- **A service, software, a license or an asset**: with the **Target** field on the credential form.
 
 The credential page shows the linked target, and the linked services show the credential.
 

@@ -10,7 +10,7 @@ Risk assessments are under **Risk & Governance → Risk Assessments** (`/risk-as
 2. Enter an **Assessment Name** (for example "Q1 2026 Security Assessment").
 3. Choose a **Snapshot Strategy**:
     - **Snapshot All Open Risks** (recommended) copies every risk in the register whose status is not Closed: description, threat type, categories, inherent and residual impact and likelihood, and treatment strategy.
-    - **Start Empty** creates an assessment with no items.
+    - **Start Empty** creates an assessment with no items. Add risks to a draft assessment one by one with **Add an open risk**.
 4. Click **Create Assessment**. The assessment starts in **Draft**.
 
 The items are copies: changing them does not change the live risks until you lock the assessment and choose to sync.

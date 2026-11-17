@@ -10,7 +10,7 @@ OpsDeck is configured entirely via environment variables. Set them in your OS, i
 | `DATA_ENCRYPTION_KEY` | Fernet key(s) that encrypt stored secrets such as API connector credentials. Separate several keys with commas: the first encrypts and all of them decrypt. See [Security Hardening](security-hardening.md#encryption-of-stored-secrets). | Derived from `SECRET_KEY` | Recommended |
 | `APP_BASE_URL` | Public URL of OpsDeck, such as `https://opsdeck.example.com`. Used to build absolute links in emails sent by background jobs, such as supplier review notifications. | `''` | Recommended |
 | `TIMEZONE` | Application timezone, as an IANA name such as `Europe/Madrid`, `America/New_York` or `UTC`. Used for dates shown in the UI and for the times of scheduled jobs. An unknown name falls back to `Europe/Madrid`. | `Europe/Madrid` | No |
-| `FLASK_APP` | Tells the `flask` command where the application is. The app does not read it, but the container entrypoint runs `flask db upgrade` and other `flask` commands and the image does not set it, so set it in every deployment. | — | Yes, `run:app` |
+| `FLASK_APP` | Tells the `flask` command where the application is. The Docker image and the Helm chart set it; set it yourself only for a manual installation. | `run:app` in the image | Manual installs only |
 | `FLASK_DEBUG` | Enable debug mode. `1` for development, `0` for production. | `0` | No |
 | `FLASK_ENV` | When set to `development`, HTTPS redirection is turned off. The Helm chart sets it to `production`. | — | No |
 

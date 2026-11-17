@@ -16,16 +16,28 @@ A request without a token, or with an unknown token, gets a `401` with a JSON bo
 
 1. Open the user menu (your name, top right) and choose **API Key** (`/my-api-key`).
 2. Click **Generate New Token** and confirm.
-3. Copy the token with the copy button next to the field.
+3. Copy the token with the copy button next to the field. **It is shown only once**: afterwards the page only says that a token is active.
 
 Each user has at most one token. Generating a new one replaces the previous token, which stops working immediately. Administrators with write access to Administration can also generate a token for another user from that user's detail page (**Developer Settings (API)** card).
 
 ![API Key page](../assets/screenshots/api-my-api-key.png)
 
 !!! warning "Treat tokens like passwords"
-    Tokens are random 64-character hexadecimal strings, stored in the database as they are (not hashed). The token stays visible on your **API Key** page and to administrators on the user detail page, and generating a token records the old and new values in the [Audit Log](audit-log.md). There is no separate revoke action: generating a new token is how you invalidate the old one.
+    Tokens are random 64-character hexadecimal strings. OpsDeck stores only a SHA-256 hash, so a lost token cannot be recovered: generate a new one. There is no separate revoke action: generating a new token is how you invalidate the old one. The token of an archived user is refused.
 
-    API calls run as the token's owner, but the API does not check module permissions: any valid token can call every endpoint below.
+### Permissions
+
+A token acts with its owner's permissions:
+
+| Endpoint | Needs |
+|---|---|
+| Every `GET` (list and detail) | Any valid token |
+| `POST /api/v1/users` | Write access to `administration` |
+| `POST /api/v1/users` with a `role`, or on a user who is an admin | An admin's token |
+| `POST /api/v1/changes`, `/requests`, `/incidents` | Write access to `operations` |
+| `POST /api/v1/onboardings` | Write access to `hr_people` |
+
+Administrators have every module. A request without the permission gets a `403` with a JSON message. Integrations that write with a non-admin service account need the matching module write permission.
 
 ## Swagger UI
 
@@ -97,7 +109,7 @@ Every POST endpoint is an upsert: it updates the matching record if there is one
 | `name` | Yes | Up to 100 characters |
 | `department`, `job_title` | No | Up to 100 characters |
 | `personal_email` | No | Up to 120 characters |
-| `role` | No | Defaults to `user` |
+| `role` | No | `user`, `editor` or `admin` (needs an admin token). Left out: a new user gets `user`, an existing user keeps their role |
 
 ### Changes
 

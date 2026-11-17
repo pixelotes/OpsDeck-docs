@@ -39,11 +39,13 @@ Changes made by scheduled jobs, such as the scheduled Microsoft Entra ID sync or
 | **From Date**, **To Date** | Entries on or between the dates (both inclusive) |
 | **Search** | Text in the entity name (case-insensitive) |
 
-Click **Apply Filters** to apply and **Clear** to reset. Entries are listed newest first, 50 per page by default; you can switch to 25 or 100 per page at the bottom of the list.
+Click **Apply Filters** to apply and **Clear** to reset. **Export to CSV** downloads every entry that matches the current filters, not only the visible page; each export is itself recorded. Entries are listed newest first, 50 per page by default; you can switch to 25 or 100 per page at the bottom of the list.
 
 ## Viewing change details
 
 Click the eye button in the **Details** column to open **Change Details**. It shows the action, entity type and ID, name, user, IP address and timestamp, followed by a table with each field's **Old Value** and **New Value**.
+
+Fields that hold secrets (passwords, tokens, API keys, connector credentials) are recorded as `[REDACTED]`, so the log shows that they changed without their values.
 
 The same information is available as JSON at `/admin/audit-log/<id>/detail` to signed-in users with access to Administration.
 

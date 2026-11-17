@@ -10,7 +10,7 @@ OpsDeck supports two authentication methods: local credentials and Google OAuth 
 
 1. User submits email and password.
 2. Password is verified against the stored hash (Werkzeug PBKDF2).
-3. If MFA is enabled (`MFA_ENABLED=True`), a TOTP token is required.
+3. If MFA is enabled (`MFA_ENABLED=True`) and the sign-in comes from an IP address not seen before for that user, a one-time code is emailed and must be entered.
 4. Flask-Login creates a server-side session with secure cookie flags.
 5. The user's known IP is recorded (`UserKnownIP` model) for anomaly detection.
 
@@ -62,7 +62,7 @@ Permission checks follow this chain:
 
 ### API authentication
 
-API endpoints accept a bearer token in the `Authorization` header. Tokens are generated per-user, hashed with SHA-256 before storage, and carry the same permissions as the owning user. Tokens can be revoked from the user profile.
+API endpoints accept a bearer token in the `Authorization` header. Tokens are generated per user, stored as a SHA-256 hash and shown once. Reads need any valid token; writes need the owner's module write permission, and setting a role needs an admin token (see [API Usage](../user-guide/api.md#permissions)). Generating a new token invalidates the previous one.
 
 ## Data protection
 
@@ -70,7 +70,7 @@ API endpoints accept a bearer token in the `Authorization` header. Tokens are ge
 
 API connector credentials (`connector_tasks.auth_config`) are encrypted with Fernet using `DATA_ENCRYPTION_KEY`, or a key derived from `SECRET_KEY` with HKDF when that is unset. Only the secret fields are encrypted; non-secret settings such as a site URL stay readable. See [Security Hardening](../deployment/security-hardening.md#encryption-of-stored-secrets) for rotation.
 
-The credentials vault (`models/credentials.py`) uses Fernet symmetric encryption (from the `cryptography` library) to encrypt secret values at rest. The encryption key is derived from `SECRET_KEY`. Each `CredentialSecret` record stores a Fernet token that can only be decrypted with the application's key.
+The Credentials module (`models/credentials.py`) does not store secrets at all: it keeps only a masked value (asterisks plus the last 4 characters) for identification. See [Credentials](../user-guide/credentials.md).
 
 ### Password hashing
 

@@ -60,13 +60,12 @@ existingSecret: opsdeck-secrets
 
 env:
   FLASK_ENV: "production"
-  FLASK_APP: "run:app"
   TRUST_PROXY: "1"
   APP_BASE_URL: "https://opsdeck.yourcompany.com"
   TIMEZONE: "Europe/Madrid"
 ```
 
-`FLASK_APP` is needed because the container runs `flask db upgrade` and other `flask` commands on startup and the image does not set it. Set `TRUST_PROXY` when traffic arrives through an Ingress or Gateway, so OAuth redirect URIs and email links use the public host and `https`.
+The image sets `FLASK_APP=run:app`, which the `flask db upgrade` run on startup needs. Set `TRUST_PROXY` when traffic arrives through an Ingress or Gateway, so OAuth redirect URIs and email links use the public host and `https`.
 
 The key decision is the database mode: **external** (an existing database such as RDS or Aurora) or **internal**.
 
@@ -106,7 +105,7 @@ The key decision is the database mode: **external** (an existing database such a
         database: opsdeck
     ```
 
-    In this mode the chart creates a Service named `<release>-db` on port 5432 and points `DATABASE_URL` at it, with the credentials from `postgresql.auth`. That Service selects pods labelled `app.kubernetes.io/component: database`, which the chart does not create itself, and the bundled Bitnami subchart (`postgresql.enabled`, off by default) creates its own Service, `<release>-postgresql`, with different labels. Check that `<release>-db` has endpoints (`kubectl get endpoints -n opsdeck`) before relying on this mode.
+    In this mode the chart creates a Service named `<release>-db` on port 5432 and points `DATABASE_URL` at it, with the credentials from `postgresql.auth`. That Service selects the primary pod of the bundled Bitnami PostgreSQL subchart, which this mode needs (`postgresql.enabled: true`, the default). The chart refuses to render with `database.type: internal` and the subchart turned off.
 
 ### 3. Configure persistent storage
 
@@ -292,7 +291,7 @@ The OpsDeck container has fixed resources: requests `100m` CPU / `128Mi` memory,
 | `database.external.database` | `opsdeck_prod` | External database name |
 | `database.external.existingSecret.name` | `secreto-kubernetes` | Secret holding the database password |
 | `database.external.existingSecret.key` | `password` | Key of the password in that Secret |
-| `postgresql.enabled` | `false` | Deploy the Bitnami PostgreSQL subchart |
+| `postgresql.enabled` | `true` | Deploy the Bitnami PostgreSQL subchart (required by `database.type: internal`) |
 | `postgresql.auth.username` | `opsdeck` | Database user (also used in `internal` mode) |
 | `postgresql.auth.password` | `opsdeck_password` | Database password (also used in `internal` mode) |
 | `postgresql.auth.database` | `opsdeck_db` | Database name (also used in `internal` mode) |
