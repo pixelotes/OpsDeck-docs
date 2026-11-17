@@ -14,12 +14,16 @@ OpsDeck supports two authentication methods: local credentials and Google OAuth 
 4. Flask-Login creates a server-side session with secure cookie flags.
 5. The user's known IP is recorded (`UserKnownIP` model) for anomaly detection.
 
-### OAuth (Google SSO)
+### OAuth (Google and Microsoft SSO)
 
-1. User clicks "Sign in with Google."
-2. Flask-Dance redirects to Google's OAuth consent screen.
-3. On callback, the email is matched to an existing user record.
-4. If the user exists, a session is created. If not, access is denied (no self-registration).
+1. User clicks "Sign in with Google" or "Sign in with Microsoft".
+2. Flask-Dance redirects to the provider's consent screen.
+3. On callback, the identity is matched to an existing user record:
+    - Google: by email.
+    - Microsoft: by Entra object ID, or by `userPrincipalName` on the first sign-in, after which the object ID is stored. The admin-editable `mail` attribute is never trusted.
+4. If the user exists, is not archived and is allowed to sign in, a session is created. Otherwise access is denied (no self-registration).
+
+Both callbacks share one post-authentication helper, so auditing and session creation are identical.
 
 !!! warning
     `OAUTHLIB_INSECURE_TRANSPORT=1` must only be set in development. It disables the HTTPS requirement for OAuth callbacks.
@@ -63,6 +67,8 @@ API endpoints accept a bearer token in the `Authorization` header. Tokens are ge
 ## Data protection
 
 ### Credential encryption
+
+API connector credentials (`connector_tasks.auth_config`) are encrypted with Fernet using `DATA_ENCRYPTION_KEY`, or a key derived from `SECRET_KEY` with HKDF when that is unset. Only the secret fields are encrypted; non-secret settings such as a site URL stay readable. See [Security Hardening](../deployment/security-hardening.md#encryption-of-stored-secrets) for rotation.
 
 The credentials vault (`models/credentials.py`) uses Fernet symmetric encryption (from the `cryptography` library) to encrypt secret values at rest. The encryption key is derived from `SECRET_KEY`. Each `CredentialSecret` record stores a Fernet token that can only be decrypted with the application's key.
 

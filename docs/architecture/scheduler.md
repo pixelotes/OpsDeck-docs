@@ -20,6 +20,9 @@ Jobs are defined programmatically in the application factory (`src/__init__.py`)
 | Subscription renewal alerts | Daily | `notifications` | Checks for subscriptions approaching renewal and sends notifications |
 | Certificate expiry alerts | Daily | `notifications` | Checks for certificates approaching expiry date |
 | Data retention | Weekly | — | Archives old records per configured retention policies |
+| API connector polling | Every 5 minutes | `connector_service` | Runs each enabled connector whose polling interval has elapsed and stores a report |
+| Supplier reviews | Daily, 08:30 | `supplier_review_service` | Opens reviews due within 14 days, emails the owners and sends weekly overdue reminders. Also `flask schedule-supplier-reviews` |
+| Entra ID user sync | Configurable (daily at HH:MM or every N hours) | `entra_sync_service` | Syncs users from Entra groups. Aborts and emails admins above the safety threshold. Also `flask entra-sync` |
 
 ## Compliance drift detection
 

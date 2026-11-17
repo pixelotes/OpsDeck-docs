@@ -105,12 +105,14 @@ nav:
           - Security Incidents: user-guide/incidents.md
       - Vendors & Procurement:
           - Suppliers: user-guide/suppliers.md
+          - Supplier Reviews: user-guide/supplier-reviews.md
           - Contracts: user-guide/contracts.md
           - Subscriptions: user-guide/subscriptions.md
           - Purchases & Budgets: user-guide/purchases.md
       - Service Catalog: user-guide/services.md
       - People:
           - Users & Groups: user-guide/users.md
+          - Microsoft Entra ID: user-guide/entra-id.md
           - Onboarding & Offboarding: user-guide/onboarding.md
           - Hiring Pipeline: user-guide/hiring.md
       - Policies & Training:
@@ -126,6 +128,7 @@ nav:
           - Campaigns: user-guide/campaigns.md
       - Reports & Search: user-guide/reports.md
       - Configuration: user-guide/configuration.md
+      - API Connectors: user-guide/connectors.md
       - Data Import (CLI): user-guide/data-import.md
       - API Usage: user-guide/api.md
 

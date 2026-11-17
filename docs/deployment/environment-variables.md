@@ -6,7 +6,9 @@ OpsDeck is configured entirely via environment variables. Set them in your OS, i
 
 | Variable | Description | Default | Required |
 |---|---|---|---|
-| `SECRET_KEY` | Cryptographic signing key for sessions, CSRF, and credential encryption. Must be long and random. | `your-secret-key-change-this` | **Yes** |
+| `SECRET_KEY` | Cryptographic signing key for sessions and CSRF. Also used to derive the encryption key for stored secrets when `DATA_ENCRYPTION_KEY` is unset. Must be long and random. | `your-secret-key-change-this` | **Yes** |
+| `DATA_ENCRYPTION_KEY` | Fernet key(s) that encrypt stored secrets such as API connector credentials. Separate several keys with commas: the first encrypts and all of them decrypt. See [Security Hardening](security-hardening.md#encryption-of-stored-secrets). | Derived from `SECRET_KEY` | Recommended |
+| `APP_BASE_URL` | Public URL of OpsDeck, such as `https://opsdeck.example.com`. Used to build absolute links in emails sent by background jobs, such as supplier review notifications. | `''` | Recommended |
 | `FLASK_APP` | Flask application entry point. | `run:app` | Yes |
 | `FLASK_DEBUG` | Enable debug mode. `1` for development, `0` for production. | `0` | No |
 
@@ -46,6 +48,9 @@ These are used only on the first run to create the initial admin user.
 |---|---|---|
 | `GOOGLE_OAUTH_CLIENT_ID` | Google OAuth client ID for SSO. | `''` |
 | `GOOGLE_OAUTH_CLIENT_SECRET` | Google OAuth client secret. | `''` |
+| `AZURE_OAUTH_TENANT_ID` | Entra ID tenant ID, for Microsoft SSO, the Entra ID user sync and the Microsoft 365 connector. Must be a single tenant. | `''` |
+| `AZURE_OAUTH_CLIENT_ID` | Entra ID application (client) ID. | `''` |
+| `AZURE_OAUTH_CLIENT_SECRET` | Entra ID client secret. | `''` |
 | `OAUTHLIB_INSECURE_TRANSPORT` | Allow OAuth over HTTP. **Development only.** | — |
 | `MFA_ENABLED` | Enable TOTP multi-factor authentication. | `False` |
 
