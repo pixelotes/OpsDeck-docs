@@ -28,7 +28,7 @@ flowchart LR
 2. Click **Create Comparison**.
 3. Configure:
     - **Name** — descriptive label (e.g., "HRIS vs Google Workspace Q1 2026").
-    - **Dataset A** — source system and data source (CSV upload, API, database query).
+    - **Dataset A** — source system and data source (CSV upload, API, database query, or a [Connector Report](connectors.md)).
     - **Dataset B** — target system and data source.
     - **Key field** — the field used to match records (e.g., `email`).
     - **Comparison fields** — which fields to compare for mismatches (e.g., `department`, `role`, `status`).

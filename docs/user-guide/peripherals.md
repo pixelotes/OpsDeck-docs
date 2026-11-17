@@ -8,9 +8,10 @@ Common peripheral categories: monitors, keyboards, mice, headsets, webcams, dock
 
 ## Assigning peripherals
 
-1. Navigate to **Assets → Peripherals**.
+1. Navigate to **Core Inventory → Peripherals**.
 2. Click **Add Peripheral**.
 3. Provide: name, type, serial number, and condition.
+   Brand and model come from the shared lists described in [Brands & Models](brands-models.md).
 4. Assign to a user — creates a `PeripheralAssignment` record tracking who has the peripheral and since when.
 5. Transfers between users close the current assignment and create a new one, preserving full history.
 

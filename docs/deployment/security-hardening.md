@@ -43,7 +43,35 @@ For Google OAuth:
 3. Configure `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET`.
 4. Ensure `OAUTHLIB_INSECURE_TRANSPORT` is **not** set in production.
 
-Users must already exist in OpsDeck — OAuth authenticates but does not auto-create accounts.
+For Microsoft Entra ID:
+
+1. Register a single-tenant app with the redirect URI `https://your-domain/login/azure/authorized`.
+2. Configure `AZURE_OAUTH_TENANT_ID`, `AZURE_OAUTH_CLIENT_ID` and `AZURE_OAUTH_CLIENT_SECRET`.
+
+See [Microsoft Entra ID](../user-guide/entra-id.md) for details, including the optional user sync.
+
+Users must already exist in OpsDeck: SSO authenticates but does not create accounts. Archived and directory-only users are refused.
+
+## Encryption of stored secrets
+
+API connector credentials stored in the database are encrypted with Fernet. The key comes from `DATA_ENCRYPTION_KEY`. Without it, OpsDeck derives a key from `SECRET_KEY`, which ties stored secrets to the session key: rotating `SECRET_KEY` would make them unreadable. The security check reports when no dedicated key is set.
+
+To set a dedicated key, or to rotate it:
+
+1. Generate a key:
+
+    ```bash
+    python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+    ```
+
+2. Put it **first** in `DATA_ENCRYPTION_KEY`, keeping any previous key after it (`new,old`), and restart.
+3. Re-encrypt the stored connector credentials:
+
+    ```bash
+    flask rotate-data-encryption-key
+    ```
+
+4. Remove the old key from `DATA_ENCRYPTION_KEY`.
 
 ## Secret rotation
 

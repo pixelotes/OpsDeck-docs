@@ -44,7 +44,7 @@ Yes, with external PostgreSQL and shared storage for attachments. Multiple appli
 
 **Does OpsDeck need internet access?**
 
-No. OpsDeck is fully self-contained and can run in air-gapped environments. The only external connections are optional: SMTP for email, Slack webhook for notifications, and Google OAuth for SSO.
+No. OpsDeck is fully self-contained and can run in air-gapped environments. The only external connections are optional: SMTP for email, a Slack webhook for notifications, Google or Microsoft Entra ID for SSO, the Entra ID user sync, and API connectors to services such as GitHub or AWS.
 
 ## Features
 

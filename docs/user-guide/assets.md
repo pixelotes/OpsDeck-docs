@@ -26,9 +26,10 @@ stateDiagram-v2
 
 ## Creating an asset
 
-1. Navigate to **Assets → Asset List**.
+1. Navigate to **Core Inventory → Assets**.
 2. Click **Add Asset**.
 3. Fill in the required fields: name, asset type, model, serial number.
+   Brand and model come from the shared lists described in [Brands & Models](brands-models.md).
 4. Optional fields: purchase date, cost, warranty expiry, supplier, location.
 5. Assign to a user (optional — can be done later).
 6. Upload photos or documentation as attachments.

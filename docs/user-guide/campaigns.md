@@ -1,19 +1,42 @@
 # Campaigns
 
-Manage email campaigns for announcements, policy communications, and awareness initiatives.
+Send one-off emails to many users at once, for example announcements, policy communications or awareness reminders.
 
-## Email campaigns
+Campaigns are part of the **Communications** module.
+
+## Creating a campaign
 
 1. Navigate to **Communications → Campaigns**.
-2. Click **Create Campaign**.
-3. Select or create an **email template** (`EmailTemplate`).
-4. Define the recipient list (users, groups, or custom lists).
-5. Schedule or send immediately.
+2. Click **New Campaign**.
+3. Fill in the four sections:
+    1. **Email Content**: **Campaign Title**, **Email Subject** and **Email Body** (rich text). The **Template Variables** panel lists the placeholders you can use, such as `{{ user.name }}`, `{{ user.email }}`, `{{ user.job_title }}`, `{{ user.department }}` and `{{ today }}`.
+    2. **Audience**: tick **Send to All Active Users**, or select users and groups.
+    3. **Schedule**: a **Send Date & Time**. Leave it empty to send as soon as the campaign is scheduled.
+    4. **Tags** (optional).
+4. Click **Create Draft**.
 
-## Templates
+## Sending
 
-Email templates use a customizable format with merge fields for personalization (name, email, role). Create templates in **Communications → Templates**.
+A campaign starts as a draft, which you can still edit. From the campaign page:
 
-## Scheduled communications
+- **Schedule & Send** queues one email per recipient for the chosen time.
+- **Send Now** sends a scheduled campaign immediately.
+- **Cancel** stops emails that have not been sent yet.
+- **Retry Failed** queues the failed emails again.
+- **Finish** closes an ongoing campaign.
 
-`ScheduledCommunication` records allow scheduling campaigns for future delivery. The APScheduler processes the queue and sends emails via the configured SMTP server. Delivery status is tracked per recipient.
+The campaign page shows how many emails are in total, sent, pending and failed, the list of recipients with their delivery status, and an email preview. Emails are sent by the background scheduler through the configured SMTP server.
+
+| Status | Meaning |
+|---|---|
+| **Draft** | Being prepared. Can be edited. |
+| **Scheduled** | Queued for sending. |
+| **Ongoing** | Emails are being sent. |
+| **Finished** | All emails processed. |
+| **Archived** | Hidden from the active list. |
+
+To reuse a campaign, use **Clone** in the campaign list.
+
+## Email templates
+
+Reusable emails, for example those sent by onboarding role profiles, are managed in **Communications → Email Templates**. Campaigns do not use templates: each campaign has its own subject and body.

@@ -102,7 +102,9 @@ This page documents the key architectural decisions made during OpsDeck's develo
 - Mature ecosystem with excellent tooling (pg_dump, pg_restore, pgAdmin).
 - Well-supported by all deployment targets (Docker, Kubernetes, RDS, Aurora).
 
-**Trade-offs.** Limits deployment options for organizations that standardize on MySQL/MariaDB. The psycopg2-binary dependency requires PostgreSQL client libraries.
+**Trade-offs.** Limits deployment options for organizations that standardize on MySQL/MariaDB.
+
+**Update: driver changed to psycopg 3.** OpsDeck first used psycopg2 (`psycopg2-binary`). When Flask-SQLAlchemy started resolving to SQLAlchemy 2.1, which uses psycopg 3 for plain `postgresql://` URLs, a fresh install could no longer connect with the URLs the Helm chart and docs use. The driver was switched to `psycopg[binary]` 3.x, so `DATABASE_URL` keeps the plain `postgresql://` form. The binary package bundles `libpq`, so no system PostgreSQL client libraries are needed.
 
 ---
 
@@ -131,11 +133,15 @@ This page documents the key architectural decisions made during OpsDeck's develo
 **Rationale.**
 
 - Bootstrap 5 dropped jQuery dependency — clean, modern CSS with responsive grid.
-- Each interactive need is solved by the best-in-class library for that specific problem: Simple DataTables for tables, Tom Select for selects, Chart.js for charts, FullCalendar for calendar views, Mermaid for diagrams, SortableJS for drag-and-drop, OrgChart.js for org charts.
+- Each interactive need is solved by the best-in-class library for that specific problem: Simple DataTables for tables, Tom Select for selects, Chart.js for charts, a calendar library for calendar views (originally FullCalendar, now SimpleCalendarJS; see below), Mermaid for diagrams, SortableJS for drag-and-drop, OrgChart.js for org charts.
 - No build step required — `copy-assets.js` copies vendor files from `node_modules` to `static/vendor/`.
 - Total JS bundle is smaller than any SPA framework's baseline.
 
-**Trade-offs.** No component model — UI reuse is via Jinja2 includes and macros, which are less composable than React components. State management across related UI elements requires manual DOM manipulation.
+**Trade-offs.** No component model — UI reuse is via Jinja2 includes and macros, which are less composable than React components. State management across related UI elements requires manual DOM manipulation. Every library must ship a build that loads from a plain `<script>` tag; ESM-only libraries cannot be used without adding a bundler.
+
+**Update: FullCalendar replaced by SimpleCalendarJS.** The renewal calendar used FullCalendar v6. FullCalendar v7 dropped its global/IIFE bundle in favour of ESM-only builds, which the script-tag based asset pipeline cannot load, and v6 had received no updates since December 2024. Rather than add a bundler for one page, the calendar moved to SimpleCalendarJS (`simple-calendar-js`): maintained, no dependencies, loadable from a script tag, with a comparable feature set.
+
+**Update: shared list components.** To keep reuse manageable without a component model, list tables now render people, empty values and row actions through one set of Jinja2 macros (`components/list_macros.html`). See [Frontend Stack](frontend.md#list-macros).
 
 ---
 

@@ -86,9 +86,11 @@ nav:
       - user-guide/index.md
       - Getting Started: user-guide/getting-started.md
       - Dashboard: user-guide/dashboard.md
+      - Roadmaps: user-guide/roadmaps.md
       - Assets:
           - Hardware Assets: user-guide/assets.md
           - Peripherals: user-guide/peripherals.md
+          - Brands & Models: user-guide/brands-models.md
           - Software Inventory: user-guide/software.md
           - Locations: user-guide/locations.md
           - Maintenance: user-guide/maintenance.md
@@ -105,27 +107,32 @@ nav:
           - Security Incidents: user-guide/incidents.md
       - Vendors & Procurement:
           - Suppliers: user-guide/suppliers.md
+          - Supplier Reviews: user-guide/supplier-reviews.md
           - Contracts: user-guide/contracts.md
           - Subscriptions: user-guide/subscriptions.md
           - Purchases & Budgets: user-guide/purchases.md
+          - Requirements, Evaluations & Contacts: user-guide/crm.md
       - Service Catalog: user-guide/services.md
       - People:
           - Users & Groups: user-guide/users.md
+          - Microsoft Entra ID: user-guide/entra-id.md
           - Onboarding & Offboarding: user-guide/onboarding.md
           - Hiring Pipeline: user-guide/hiring.md
       - Policies & Training:
           - Policy Management: user-guide/policies.md
           - Training Courses: user-guide/training.md
-      - Credentials Vault: user-guide/credentials.md
+      - Credentials: user-guide/credentials.md
       - Certificates: user-guide/certificates.md
+      - Service Requests: user-guide/requests.md
       - Change Management: user-guide/changes.md
       - BCDR: user-guide/bcdr.md
-      - CRM:
-          - Contacts & Leads: user-guide/crm.md
-          - Opportunities: user-guide/opportunities.md
+      - Communications:
           - Campaigns: user-guide/campaigns.md
       - Reports & Search: user-guide/reports.md
       - Configuration: user-guide/configuration.md
+      - API Connectors: user-guide/connectors.md
+      - Jira Assets Sync: user-guide/jira-assets.md
+      - Audit Log: user-guide/audit-log.md
       - Data Import (CLI): user-guide/data-import.md
       - API Usage: user-guide/api.md
 
