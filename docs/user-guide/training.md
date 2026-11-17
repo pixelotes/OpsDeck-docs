@@ -4,7 +4,7 @@ Track security awareness training and compliance-related courses with assignment
 
 ## Course management
 
-1. Navigate to **People → Training**.
+1. Navigate to **Knowledge & Policy → Manage Courses**.
 2. Click **Add Course**.
 3. Provide: title, description, content type (internal/external), and duration.
 4. Set a completion deadline if required.

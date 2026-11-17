@@ -4,6 +4,8 @@ API connectors pull data from external services on a schedule and store each run
 
 Connectors are under **Settings → API Connectors** and require the `settings` module permission.
 
+![API Connectors](../assets/screenshots/connectors-dashboard.png)
+
 ## Available connectors
 
 | Connector | What it fetches | Credentials |

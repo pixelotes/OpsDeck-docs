@@ -4,13 +4,17 @@ Periodic supplier reviews are a short questionnaire answered by the supplier's *
 
 ## Before you start
 
-On each supplier you want reviewed (**Vendors → Suppliers → Edit**):
+On each supplier you want reviewed (**Procurement → Suppliers → Edit**):
 
 1. Set the **Owner**: a user or a group. With a group, any member can fill in the review, and all of them are notified.
 2. Set **Review every** to 3, 6, 12 or 24 months.
 3. Optionally set **Next review**. If you leave it empty, OpsDeck calculates it from the last completed review, or uses today if there is none.
 
 A supplier without a review interval is never scheduled. Start with the critical suppliers.
+
+The supplier page shows the schedule and any open review in its **Reviews & Assessments** card:
+
+![Reviews & Assessments card on a supplier](../assets/screenshots/supplier-reviews-card.png)
 
 ## How reviews are scheduled
 
@@ -38,6 +42,8 @@ Owners find their open reviews in three places:
 Owners can fill in reviews without having access to the Compliance module.
 
 The default questionnaire has two parts.
+
+![Filling in a supplier review](../assets/screenshots/supplier-reviews-fill.png)
 
 **1. Check**
 
@@ -80,6 +86,10 @@ Compliance editors can manage the questionnaires under **Compliance → Supplier
 - **Create** a template or **edit** one: add, reorder and remove questions. Each question is either a *check* or a *review* point, with optional help text. A template needs at least one review point.
 - **Make default**: new reviews use the default template.
 - **Archive** templates that are no longer used. The default template cannot be archived.
+
+![Review templates](../assets/screenshots/supplier-reviews-templates.png)
+
+![Template editor](../assets/screenshots/supplier-reviews-template-editor.png)
 
 ## Compliance evidence
 

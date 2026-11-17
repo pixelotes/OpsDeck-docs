@@ -47,6 +47,8 @@ Add these **application** permissions to the app registration and grant admin co
 
 Configure the sync under **Administration → Entra ID Sync**. It is disabled by default.
 
+![Entra ID Sync settings and run history](../assets/screenshots/entra-id-sync-settings.png)
+
 | Setting | Description |
 |---|---|
 | **Groups** | Object IDs of the Entra groups whose members are synced. |

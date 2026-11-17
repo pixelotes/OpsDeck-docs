@@ -8,7 +8,7 @@ Define the stages of your hiring process: Application Received → Phone Screen 
 
 ## Candidate tracking
 
-1. Navigate to **People → Hiring**.
+1. Navigate to **HR & People → Hiring / ATS**.
 2. Click **Add Candidate**.
 3. Provide: name, email, position applied for, and current stage.
 4. Move candidates between stages as the process progresses.

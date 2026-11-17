@@ -10,13 +10,13 @@ If you're new to OpsDeck, begin with [Getting Started](getting-started.md) to un
 
 | Area | Modules |
 |---|---|
-| **IT operations** | Assets, peripherals, software, locations, maintenance, disposal |
+| **IT operations** | Assets, peripherals, brands & models, software, locations, maintenance, disposal |
 | **Governance** | Frameworks, compliance dashboard, audit snapshots, compliance drift |
 | **Access** | User access reviews (UAR), users & groups, RBAC |
 | **Risk** | Risk register, risk assessment, security incidents |
-| **Procurement** | Suppliers, contracts, subscriptions, purchases, budgets |
+| **Procurement** | Requirements, evaluations, suppliers, contacts, contracts, subscriptions, purchases, budgets |
 | **People** | Onboarding/offboarding, hiring pipeline, training, policies |
 | **Services** | Service catalog, dependency mapping, business impact |
-| **Security** | Credentials vault, certificates, change management, BCDR |
-| **CRM** | Contacts, leads, opportunities, campaigns |
+| **Security** | Credentials, certificates, change management, BCDR |
+| **Communications** | Email campaigns, email templates |
 | **Platform** | Reports, universal search, configuration, data import, REST API |

@@ -4,7 +4,7 @@ The risk register tracks identified threats to your organization, their scoring,
 
 ## Creating a risk
 
-1. Navigate to **Security → Risks**.
+1. Navigate to **Risk & Governance → Risk Register**.
 2. Click **Add Risk**.
 3. Fill in:
     - **Title** and **description** of the threat.

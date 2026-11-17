@@ -21,7 +21,7 @@ OpsDeck consolidates the essential operational and governance needs of IT teams 
 | Compliance & audits | Continuous monitoring for ISO 27001 / SOC 2 with drift detection and audit snapshots |
 | User access reviews | Automated comparisons between systems to detect orphaned accounts and access mismatches |
 | Service catalog | Map business services to technical dependencies for impact analysis |
-| Risk & security | Risk register, incident management, credentials vault, and audit trails |
+| Risk & security | Risk register, incident management, credential lifecycle tracking, and audit trails |
 | Vendor management | Supplier tracking, contract lifecycle, subscription renewal forecasting |
 | Policies & training | Policy acknowledgment workflows and training assignment tracking |
 
